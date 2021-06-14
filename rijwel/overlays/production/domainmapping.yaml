@@ -1,0 +1,19 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: rijwel.nl
+spec:
+  ref:
+    name: rijwel
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: www.rijwel.nl
+spec:
+  ref:
+    name: rijwel
+    kind: Service
+    apiVersion: serving.knative.dev/v1
