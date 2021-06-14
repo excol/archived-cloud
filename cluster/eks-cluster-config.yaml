@@ -26,9 +26,6 @@ managedNodeGroups:
       - subnet-08468ced27fdd2678
     iam:
       instanceRoleARN: arn:aws:iam::479097783038:role/eks-excol-production-node-group
-    securityGroups:
-      attachIDs:
-        - sg-0e0c17f5c1cdbe594
     instanceType: t3a.small
     volumeSize: 30
     ssh:
