@@ -4,6 +4,5 @@ bases:
   - ../../base
 namespace: production
 resources: []
-  #- domainmapping.yaml
 patchesStrategicMerge:
   - config-env-secret.yaml
