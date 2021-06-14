@@ -1,0 +1,36 @@
+kind: ClusterConfig
+apiVersion: eksctl.io/v1alpha5
+metadata:
+  name: excol-production
+  region: eu-central-1
+vpc:
+  id: vpc-02649942642dc1251
+  securityGroup: sg-0c7793ccbeb60615f
+  subnets:
+    public:
+      eu-central-1a:
+        id: subnet-047e62326d26607ca
+      eu-central-1b:
+        id: subnet-061a1f605524b3d00
+      eu-central-1c:
+        id: subnet-08468ced27fdd2678
+managedNodeGroups:
+  - name: default-nodes
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 3
+    maxPodsPerNode: 100
+    subnets:
+      - subnet-047e62326d26607ca
+      - subnet-061a1f605524b3d00
+      - subnet-08468ced27fdd2678
+    iam:
+      instanceRoleARN: arn:aws:iam::479097783038:role/eks-excol-production-node-group
+    securityGroups:
+      attachIDs:
+        - sg-0e0c17f5c1cdbe594
+    instanceType: t3a.small
+    volumeSize: 30
+    ssh:
+      allow: true
+      publicKeyName: "EC2 Default"
