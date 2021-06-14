@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: DomainMapping
+metadata:
+  name: dillen.dev
+spec:
+  ref:
+    name: dillen-blog
+    kind: Service
+    apiVersion: serving.knative.dev/v1

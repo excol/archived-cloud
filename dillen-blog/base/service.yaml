@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: dillen-blog
+spec:
+  template:
+    spec:
+      containers:
+        - name: web
+          image: dillen-blog
+          envFrom:
+            - secretRef:
+                name: dillen-blog-env

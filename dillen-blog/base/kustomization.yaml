@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - service.yaml
+  - env-secret.yaml
+images:
+  - name: dillen-blog
+    newName: 479097783038.dkr.ecr.eu-central-1.amazonaws.com/excol-cloud-dillen-blog
+    newTag: v0.0.1
