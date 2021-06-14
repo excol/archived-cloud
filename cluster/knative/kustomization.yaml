@@ -10,3 +10,4 @@ patchesStrategicMerge:
   - config-domains.yaml
   - config-autoscaler.yaml
   - config-certmanager.yaml
+  - config-webhook.yaml

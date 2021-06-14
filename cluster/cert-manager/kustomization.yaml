@@ -8,7 +8,10 @@ resources:
 helmCharts:
   - name: cert-manager
     namespace: cert-manager
-    valuesInline: {}
+    valuesInline:
+      webhook:
+        hostNetwork: true
+        securePort: 11250
     releaseName: cert-manager
     version: v1.3.1
     repo: https://charts.jetstack.io
