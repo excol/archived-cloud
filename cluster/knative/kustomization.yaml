@@ -6,8 +6,8 @@ resources:
   - domainmapping.yaml
   - networking-certmanager.yaml
 patchesStrategicMerge:
-  - config-kourier-network.yaml
-  - config-domains.yaml
-  - config-autoscaler.yaml
-  - config-certmanager.yaml
-  - config-webhook.yaml
+  - config/kourier-network.yaml
+  - config/domains.yaml
+  - config/autoscaler.yaml
+  - config/certmanager.yaml
+  - config/webhook.yaml
