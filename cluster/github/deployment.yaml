@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-runner
+  namespace: github
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: github-runner
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: github-runner
+    spec:
+      serviceAccountName: github-runner
+      containers:
+        - name: setup-ecr-auth
+          image: amazon/aws-cli
+          command:
+            - sh
+            - "-c"
+            - |
+              while true; do
+                echo "set ECR token.."
+
+                export CREDENTIALS=$(echo "AWS:$(aws ecr get-login-password --region eu-central-1)" | base64 -w 0) && \
+                  echo "{\"auths\": {\"479097783038.dkr.ecr.eu-central-1.amazonaws.com\": {\"auth\": \"${CREDENTIALS}\"}}}" > /docker/config.json
+
+                sleep 39600 # 11 hours
+              done
+          env:
+            - name: AWS_DEFAULT_REGION
+              value: eu-central-1
+            - name: AWS_EC2_METADATA_DISABLED
+              value: "true"
+          envFrom:
+            - secretRef:
+                name: github-runner-env
+          volumeMounts:
+            - mountPath: /docker
+              name: docker-config
+
+        - name: runner
+          image: excol/github-runner:2.276.1
+          envFrom:
+            - secretRef:
+                name: github-runner-env
+          env:
+            - name: DOCKER_CONFIG
+              value: /actions-runner/docker
+          volumeMounts:
+            - mountPath: /actions-runner/docker
+              name: docker-config
+      volumes:
+        - name: docker-config
+          emptyDir: {}
