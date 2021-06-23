@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
     - name: buildkitd
-      image: moby/buildkit:master-rootless
+      image: moby/buildkit:master-rootless@sha256:fae7a053ed6dc5f7289dfde237a424e35b136af76a7b23f022978bce2d2892e7
       args:
         - --oci-worker-no-process-sandbox
       readinessProbe:
