@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - serving-core.yaml
+  - eventing-core.yaml
   - kourier.yaml
   - domainmapping.yaml
   - networking-certmanager.yaml
